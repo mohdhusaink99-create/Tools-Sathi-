@@ -3,43 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolSathi - Percentage Calculator</title>
+
+<title>ToolSathi - Free Online Tools</title>
+
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#f4f7fb;
   color:#172033;
 }
+
 header{
   background:#2563eb;
   color:white;
   text-align:center;
   padding:25px 15px;
 }
-header h1{margin:0 0 6px}
+
+header h1{
+  margin:0 0 6px;
+  font-size:32px;
+}
+
+header p{
+  margin:0;
+}
+
 .container{
-  max-width:600px;
-  margin:30px auto;
+  max-width:650px;
+  margin:25px auto;
   padding:0 15px;
 }
+
 .card{
   background:white;
-  padding:25px;
+  padding:22px;
+  margin-bottom:22px;
   border-radius:18px;
   box-shadow:0 5px 20px #0002;
 }
-input{
+
+h2{
+  margin-top:0;
+  color:#2563eb;
+}
+
+label{
+  display:block;
+  margin-top:12px;
+  font-weight:bold;
+}
+
+input,select{
   width:100%;
   padding:13px;
-  margin:8px 0 15px;
+  margin:7px 0 12px;
   border:1px solid #ccc;
   border-radius:10px;
   font-size:16px;
 }
+
 button{
   width:100%;
   padding:14px;
+  margin-top:5px;
   background:#2563eb;
   color:white;
   border:0;
@@ -47,14 +79,26 @@ button{
   font-size:17px;
   font-weight:bold;
 }
-#result{
-  margin-top:20px;
-  padding:15px;
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.result{
+  margin-top:15px;
+  padding:14px;
   background:#eef5ff;
   border-radius:10px;
   text-align:center;
-  font-size:20px;
+  font-size:18px;
   font-weight:bold;
+  line-height:1.6;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#666;
 }
 </style>
 </head>
@@ -62,44 +106,466 @@ button{
 <body>
 
 <header>
-<h1>ToolSathi</h1>
-<p>Easy Online Tools</p>
+<h1>🔨 ToolSathi</h1>
+<p>Free Online Calculators & Tools</p>
 </header>
 
 <div class="container">
+
+
+<!-- 1 Percentage -->
 <div class="card">
+<h2>📊 Percentage Calculator</h2>
 
-<h2>Percentage Calculator</h2>
-<p>किसी संख्या का प्रतिशत आसानी से निकालें।</p>
-
-<label>प्रतिशत (%)</label>
+<label>Percentage (%)</label>
 <input id="percent" type="number" placeholder="जैसे 20">
 
-<label>कुल संख्या</label>
+<label>Total Number</label>
 <input id="number" type="number" placeholder="जैसे 500">
 
-<button onclick="calculate()">Calculate</button>
+<button onclick="percentage()">Calculate</button>
 
-<div id="result"></div>
+<div id="percentageResult" class="result"></div>
+</div>
+
+
+<!-- 2 Age -->
+<div class="card">
+<h2>🎂 Age Calculator</h2>
+
+<label>जन्म तारीख</label>
+<input id="birthDate" type="date">
+
+<button onclick="ageCalculator()">Calculate Age</button>
+
+<div id="ageResult" class="result"></div>
+</div>
+
+
+<!-- 3 BMI -->
+<div class="card">
+<h2>⚖️ BMI Calculator</h2>
+
+<label>Weight (kg)</label>
+<input id="weight" type="number" placeholder="जैसे 60">
+
+<label>Height (cm)</label>
+<input id="height" type="number" placeholder="जैसे 170">
+
+<button onclick="bmiCalculator()">Calculate BMI</button>
+
+<div id="bmiResult" class="result"></div>
+</div>
+
+
+<!-- 4 GST -->
+<div class="card">
+<h2>💰 GST Calculator</h2>
+
+<label>Amount (₹)</label>
+<input id="gstAmount" type="number" placeholder="जैसे 1000">
+
+<label>GST Rate (%)</label>
+<input id="gstRate" type="number" placeholder="जैसे 18">
+
+<button onclick="gstCalculator()">Calculate GST</button>
+
+<div id="gstResult" class="result"></div>
+</div>
+
+
+<!-- 5 Discount -->
+<div class="card">
+<h2>🏷️ Discount Calculator</h2>
+
+<label>Original Price (₹)</label>
+<input id="originalPrice" type="number" placeholder="जैसे 2000">
+
+<label>Discount (%)</label>
+<input id="discount" type="number" placeholder="जैसे 20">
+
+<button onclick="discountCalculator()">Calculate Discount</button>
+
+<div id="discountResult" class="result"></div>
+</div>
+
+
+<!-- 6 EMI -->
+<div class="card">
+<h2>🏦 EMI Calculator</h2>
+
+<label>Loan Amount (₹)</label>
+<input id="loan" type="number" placeholder="जैसे 500000">
+
+<label>Annual Interest Rate (%)</label>
+<input id="interest" type="number" placeholder="जैसे 10">
+
+<label>Loan Period (Years)</label>
+<input id="years" type="number" placeholder="जैसे 5">
+
+<button onclick="emiCalculator()">Calculate EMI</button>
+
+<div id="emiResult" class="result"></div>
+</div>
+
+
+<!-- 7 Simple Interest -->
+<div class="card">
+<h2>📈 Simple Interest Calculator</h2>
+
+<label>Principal (₹)</label>
+<input id="principal" type="number" placeholder="जैसे 10000">
+
+<label>Interest Rate (%)</label>
+<input id="siRate" type="number" placeholder="जैसे 8">
+
+<label>Time (Years)</label>
+<input id="siTime" type="number" placeholder="जैसे 2">
+
+<button onclick="simpleInterest()">Calculate</button>
+
+<div id="siResult" class="result"></div>
+</div>
+
+
+<!-- 8 Average -->
+<div class="card">
+<h2>🧮 Average Calculator</h2>
+
+<label>Numbers डालें</label>
+<input id="averageNumbers" type="text" placeholder="जैसे 10,20,30,40,50">
+
+<button onclick="averageCalculator()">Calculate Average</button>
+
+<div id="averageResult" class="result"></div>
+</div>
+
+
+<!-- 9 CGPA -->
+<div class="card">
+<h2>🎓 CGPA to Percentage</h2>
+
+<label>CGPA</label>
+<input id="cgpa" type="number" step="0.01" placeholder="जैसे 8.5">
+
+<button onclick="cgpaCalculator()">Convert</button>
+
+<div id="cgpaResult" class="result"></div>
+</div>
+
+
+<!-- 10 Unit Converter -->
+<div class="card">
+<h2>📏 Unit Converter</h2>
+
+<label>Value</label>
+<input id="unitValue" type="number" placeholder="जैसे 10">
+
+<label>Conversion</label>
+
+<select id="conversion">
+<option value="km-miles">Kilometer → Miles</option>
+<option value="miles-km">Miles → Kilometer</option>
+<option value="kg-pound">Kilogram → Pound</option>
+<option value="pound-kg">Pound → Kilogram</option>
+<option value="meter-feet">Meter → Feet</option>
+<option value="feet-meter">Feet → Meter</option>
+<option value="cm-inch">Centimeter → Inch</option>
+<option value="inch-cm">Inch → Centimeter</option>
+</select>
+
+<button onclick="unitConverter()">Convert</button>
+
+<div id="unitResult" class="result"></div>
+</div>
+
 
 </div>
-</div>
+
+<footer>
+© 2026 ToolSathi - Free Online Tools
+</footer>
+
 
 <script>
-function calculate(){
-  let p=parseFloat(document.getElementById("percent").value);
-  let n=parseFloat(document.getElementById("number").value);
 
-  if(isNaN(p)||isNaN(n)){
-    document.getElementById("result").innerText="दोनों नंबर भरें।";
-    return;
-  }
+/* Percentage */
+function percentage(){
 
-  let answer=(p/100)*n;
-  document.getElementById("result").innerText=
-  n+" का "+p+"% = "+answer;
+let p=parseFloat(document.getElementById("percent").value);
+let n=parseFloat(document.getElementById("number").value);
+
+if(isNaN(p)||isNaN(n)){
+document.getElementById("percentageResult").innerText="दोनों नंबर भरें।";
+return;
 }
+
+let answer=(p/100)*n;
+
+document.getElementById("percentageResult").innerText=
+n+" का "+p+"% = "+answer;
+}
+
+
+/* Age */
+function ageCalculator(){
+
+let input=document.getElementById("birthDate").value;
+let result=document.getElementById("ageResult");
+
+if(!input){
+result.innerText="जन्म तारीख चुनें।";
+return;
+}
+
+let birth=new Date(input+"T00:00:00");
+let today=new Date();
+
+if(birth>today){
+result.innerText="भविष्य की तारीख मान्य नहीं है।";
+return;
+}
+
+let years=today.getFullYear()-birth.getFullYear();
+let months=today.getMonth()-birth.getMonth();
+let days=today.getDate()-birth.getDate();
+
+if(days<0){
+months--;
+
+let previousMonth=new Date(
+today.getFullYear(),
+today.getMonth(),
+0
+);
+
+days+=previousMonth.getDate();
+}
+
+if(months<0){
+years--;
+months+=12;
+}
+
+result.innerHTML=
+years+" साल, "+months+" महीने, "+days+" दिन";
+}
+
+
+/* BMI */
+function bmiCalculator(){
+
+let weight=parseFloat(document.getElementById("weight").value);
+let height=parseFloat(document.getElementById("height").value);
+
+if(isNaN(weight)||isNaN(height)||height<=0){
+document.getElementById("bmiResult").innerText=
+"सही जानकारी भरें।";
+return;
+}
+
+let h=height/100;
+let bmi=weight/(h*h);
+
+document.getElementById("bmiResult").innerHTML=
+"BMI = "+bmi.toFixed(2);
+}
+
+
+/* GST */
+function gstCalculator(){
+
+let amount=parseFloat(document.getElementById("gstAmount").value);
+let rate=parseFloat(document.getElementById("gstRate").value);
+
+if(isNaN(amount)||isNaN(rate)){
+document.getElementById("gstResult").innerText=
+"Amount और GST Rate भरें।";
+return;
+}
+
+let gst=amount*rate/100;
+let total=amount+gst;
+
+document.getElementById("gstResult").innerHTML=
+"GST = ₹"+gst.toFixed(2)+"<br>"+
+"Total Amount = ₹"+total.toFixed(2);
+}
+
+
+/* Discount */
+function discountCalculator(){
+
+let price=parseFloat(document.getElementById("originalPrice").value);
+let discount=parseFloat(document.getElementById("discount").value);
+
+if(isNaN(price)||isNaN(discount)){
+document.getElementById("discountResult").innerText=
+"दोनों जानकारी भरें।";
+return;
+}
+
+let saved=price*discount/100;
+let finalPrice=price-saved;
+
+document.getElementById("discountResult").innerHTML=
+"Discount = ₹"+saved.toFixed(2)+"<br>"+
+"Final Price = ₹"+finalPrice.toFixed(2);
+}
+
+
+/* EMI */
+function emiCalculator(){
+
+let principal=parseFloat(document.getElementById("loan").value);
+let annualRate=parseFloat(document.getElementById("interest").value);
+let years=parseFloat(document.getElementById("years").value);
+
+if(isNaN(principal)||isNaN(annualRate)||isNaN(years)){
+document.getElementById("emiResult").innerText=
+"सभी जानकारी भरें।";
+return;
+}
+
+let monthlyRate=annualRate/12/100;
+let months=years*12;
+
+let emi;
+
+if(monthlyRate===0){
+emi=principal/months;
+}else{
+emi=principal*
+monthlyRate*
+Math.pow(1+monthlyRate,months)/
+(Math.pow(1+monthlyRate,months)-1);
+}
+
+let total=emi*months;
+let totalInterest=total-principal;
+
+document.getElementById("emiResult").innerHTML=
+"Monthly EMI = ₹"+emi.toFixed(2)+"<br>"+
+"Total Interest = ₹"+totalInterest.toFixed(2)+"<br>"+
+"Total Payment = ₹"+total.toFixed(2);
+}
+
+
+/* Simple Interest */
+function simpleInterest(){
+
+let p=parseFloat(document.getElementById("principal").value);
+let r=parseFloat(document.getElementById("siRate").value);
+let t=parseFloat(document.getElementById("siTime").value);
+
+if(isNaN(p)||isNaN(r)||isNaN(t)){
+document.getElementById("siResult").innerText=
+"सभी जानकारी भरें।";
+return;
+}
+
+let si=(p*r*t)/100;
+let total=p+si;
+
+document.getElementById("siResult").innerHTML=
+"Simple Interest = ₹"+si.toFixed(2)+"<br>"+
+"Total Amount = ₹"+total.toFixed(2);
+}
+
+
+/* Average */
+function averageCalculator(){
+
+let input=document.getElementById("averageNumbers").value;
+
+let numbers=input
+.split(",")
+.map(Number)
+.filter(n=>!isNaN(n));
+
+if(numbers.length===0){
+document.getElementById("averageResult").innerText=
+"Numbers सही तरीके से डालें।";
+return;
+}
+
+let sum=numbers.reduce((a,b)=>a+b,0);
+let average=sum/numbers.length;
+
+document.getElementById("averageResult").innerText=
+"Average = "+average.toFixed(2);
+}
+
+
+/* CGPA */
+function cgpaCalculator(){
+
+let cgpa=parseFloat(document.getElementById("cgpa").value);
+
+if(isNaN(cgpa)){
+document.getElementById("cgpaResult").innerText=
+"CGPA डालें।";
+return;
+}
+
+let percentage=cgpa*9.5;
+
+document.getElementById("cgpaResult").innerText=
+"Percentage ≈ "+percentage.toFixed(2)+"%";
+}
+
+
+/* Unit Converter */
+function unitConverter(){
+
+let value=parseFloat(document.getElementById("unitValue").value);
+let type=document.getElementById("conversion").value;
+
+if(isNaN(value)){
+document.getElementById("unitResult").innerText=
+"Value डालें।";
+return;
+}
+
+let result;
+
+if(type==="km-miles"){
+result=value*0.621371;
+}
+
+else if(type==="miles-km"){
+result=value*1.609344;
+}
+
+else if(type==="kg-pound"){
+result=value*2.20462;
+}
+
+else if(type==="pound-kg"){
+result=value*0.453592;
+}
+
+else if(type==="meter-feet"){
+result=value*3.28084;
+}
+
+else if(type==="feet-meter"){
+result=value*0.3048;
+}
+
+else if(type==="cm-inch"){
+result=value*0.393701;
+}
+
+else if(type==="inch-cm"){
+result=value*2.54;
+}
+
+document.getElementById("unitResult").innerText=
+"Result = "+result.toFixed(4);
+}
+
 </script>
 
 </body>
-</html>
+  </html>
