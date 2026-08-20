@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -5,133 +6,576 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ToolSathi - 50 Free Online Tools</title>
-
-<meta name="description"
-content="ToolSathi - 50 free online calculators, converters and useful tools.">
+<meta name="description" content="ToolSathi - 50 free online calculators, converters and useful tools.">
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
-  color:#172033;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f5f7fb;
+ color:#172033;
 }
-
 header{
-  background:#155eef;
-  color:white;
-  padding:18px 15px;
+ background:#155eef;
+ color:white;
+ padding:18px 15px;
 }
-
 .container{
-  max-width:1100px;
-  margin:auto;
+ max-width:1100px;
+ margin:auto;
 }
-
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
-
 .logo{
-  font-size:26px;
-  font-weight:bold;
+ font-size:26px;
+ font-weight:bold;
 }
-
 .homebtn{
-  background:white;
-  color:#155eef;
-  border:0;
-  padding:10px 15px;
-  border-radius:8px;
-  font-weight:bold;
+ background:white;
+ color:#155eef;
+ border:0;
+ padding:10px 15px;
+ border-radius:8px;
+ font-weight:bold;
 }
-
 .hero{
-  text-align:center;
-  padding:30px 15px 20px;
+ text-align:center;
+ padding:30px 15px 20px;
 }
-
 .hero h1{
-  margin:0 0 10px;
-  font-size:30px;
+ margin:0 0 10px;
+ font-size:30px;
 }
-
-.hero p{
-  color:#667085;
-}
-
+.hero p{color:#667085}
 .search{
-  width:100%;
-  max-width:600px;
-  padding:14px;
-  border:1px solid #ccd3e0;
-  border-radius:10px;
-  font-size:16px;
-  margin-top:15px;
+ width:100%;
+ max-width:600px;
+ padding:14px;
+ border:1px solid #ccd3e0;
+ border-radius:10px;
+ font-size:16px;
+ margin-top:15px;
 }
-
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px;
-  padding:15px 0 30px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:15px;
+ padding:15px 0 30px;
 }
-
 .card{
-  background:white;
-  border:1px solid #e1e5ee;
-  border-radius:12px;
-  padding:17px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
+ background:white;
+ border:1px solid #e1e5ee;
+ border-radius:12px;
+ padding:17px;
+ box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
-
 .card h3{
-  margin:0 0 8px;
-  font-size:17px;
+ margin:0 0 8px;
+ font-size:17px;
 }
-
 .card p{
-  color:#667085;
-  font-size:13px;
-  min-height:32px;
+ color:#667085;
+ font-size:13px;
+ min-height:32px;
 }
-
-button{
-  cursor:pointer;
+.open,.calculate{
+ background:#155eef;
+ color:white;
+ border:0;
+ padding:10px 14px;
+ border-radius:8px;
+ font-weight:bold;
+ cursor:pointer;
 }
-
-.open{
-  background:#155eef;
-  color:white;
-  border:0;
-  padding:10px 14px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
 #toolPage{
-  display:none;
-  background:white;
-  padding:20px;
-  margin:20px 0 30px;
-  border-radius:12px;
+ display:none;
+ background:white;
+ padding:20px;
+ margin:20px 0 30px;
+ border-radius:12px;
 }
-
 .back{
-  background:#667085;
-  color:white;
-  border:0;
-  padding:10px 14px;
-  border-radius:8px;
+ background:#667085;
+ color:white;
+ border:0;
+ padding:10px 14px;
+ border-radius:8px;
+ cursor:pointer;
+}
+input,textarea,select{
+ width:100%;
+ padding:11px;
+ margin:7px 0;
+ border:1px solid #ccd3e0;
+ border-radius:8px;
+}
+.result{
+ margin-top:15px;
+ padding:12px;
+ background:#eef4ff;
+ border-radius:8px;
+ font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header">
+<div class="logo">ToolSathi</div>
+<button class="homebtn" onclick="goHome()">Home</button>
+</div>
+</header>
+
+<main class="container">
+
+<div id="homePage">
+
+<section class="hero">
+<h1>50 Free Online Tools</h1>
+<p>Calculator, converter aur useful tools ek hi jagah</p>
+<input class="search" id="searchBox"
+placeholder="Tool search karein..."
+oninput="searchTools()">
+</section>
+
+<div class="grid" id="toolGrid"></div>
+
+</div>
+
+<div id="toolPage">
+<button class="back" onclick="goHome()">← Back</button>
+<div id="toolContent"></div>
+</div>
+
+</main>
+
+<script>
+
+const tools = [
+
+["Age Calculator","Apni age calculate karein"],
+["Percentage Calculator","Percentage calculate karein"],
+["BMI Calculator","BMI calculate karein"],
+["Simple Calculator","Basic calculation karein"],
+["Discount Calculator","Discount calculate karein"],
+["GST Calculator","GST calculate karein"],
+["EMI Calculator","Loan EMI calculate karein"],
+["Loan Calculator","Loan calculation karein"],
+["Simple Interest Calculator","Simple interest nikalein"],
+["Compound Interest Calculator","Compound interest nikalein"],
+
+["Tip Calculator","Tip calculate karein"],
+["Average Calculator","Average nikalein"],
+["Profit Loss Calculator","Profit aur loss nikalein"],
+["Ratio Calculator","Ratio calculate karein"],
+["Fraction Calculator","Fraction calculate karein"],
+["Square Calculator","Square nikalein"],
+["Cube Calculator","Cube nikalein"],
+["Square Root Calculator","Square root nikalein"],
+["Power Calculator","Power calculate karein"],
+["LCM Calculator","LCM nikalein"],
+
+["HCF Calculator","HCF nikalein"],
+["Time Calculator","Time calculate karein"],
+["Date Difference Calculator","Do dates ka difference"],
+["Days Calculator","Days calculate karein"],
+["Hours Calculator","Hours calculate karein"],
+["Minutes Calculator","Minutes calculate karein"],
+["Seconds Calculator","Seconds calculate karein"],
+["Length Converter","Length convert karein"],
+["Weight Converter","Weight convert karein"],
+["Temperature Converter","Temperature convert karein"],
+
+["Speed Converter","Speed convert karein"],
+["Area Converter","Area convert karein"],
+["Volume Converter","Volume convert karein"],
+["Data Converter","KB MB GB convert karein"],
+["Binary Converter","Binary convert karein"],
+["Decimal Converter","Decimal convert karein"],
+["Hexadecimal Converter","Hexadecimal convert karein"],
+["Roman Numeral Converter","Roman numbers convert karein"],
+["Currency Calculator","Currency calculation"],
+["Age in Days Calculator","Age ko days mein dekhein"],
+
+["Word Counter","Words count karein"],
+["Character Counter","Characters count karein"],
+["Sentence Counter","Sentences count karein"],
+["Case Converter","Text case change karein"],
+["Text Reverser","Text reverse karein"],
+["Password Generator","Random password banayein"],
+["Number Generator","Random number banayein"],
+["Percentage Increase Calculator","Percentage increase"],
+["Percentage Decrease Calculator","Percentage decrease"],
+["Time Zone Converter","Time zone conversion"]
+
+];
+
+function displayTools(list=tools){
+
+ const grid=document.getElementById("toolGrid");
+ grid.innerHTML="";
+
+ list.forEach((tool,index)=>{
+
+  const card=document.createElement("div");
+  card.className="card";
+
+  card.innerHTML=`
+  <h3>${index+1}. ${tool[0]}</h3>
+  <p>${tool[1]}</p>
+  <button class="open" onclick="openTool(${tools.indexOf(tool)})">
+  Open
+  </button>
+  `;
+
+  grid.appendChild(card);
+
+ });
+
 }
 
-input,textarea,select{
-  width:100%;
-  padding:11px;
-  margin:7￼Enter
+displayTools();
+
+function searchTools(){
+
+ const text=document.getElementById("searchBox").value.toLowerCase();
+
+ const result=tools.filter(t=>
+ t[0].toLowerCase().includes(text)
+ );
+
+ displayTools(result);
+}
+
+function goHome(){
+
+ document.getElementById("homePage").style.display="block";
+ document.getElementById("toolPage").style.display="none";
+
+ window.scrollTo(0,0);
+}
+
+function openTool(index){
+
+ const name=tools[index][0];
+
+ document.getElementById("homePage").style.display="none";
+ document.getElementById("toolPage").style.display="block";
+
+ document.getElementById("toolContent").innerHTML=
+ `<h2>${name}</h2>
+ <p>${tools[index][1]}</p>
+ ${toolForm(name)}`;
+
+ window.scrollTo(0,0);
+}
+
+function toolForm(name){
+
+if(name==="Age Calculator")
+return `
+<input type="date" id="birth">
+<button class="calculate" onclick="ageCalc()">Calculate Age</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Percentage Calculator")
+return `
+<input type="number" id="a" placeholder="Value">
+<input type="number" id="b" placeholder="Total">
+<button class="calculate" onclick="percentage()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="BMI Calculator")
+return `
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (cm)">
+<button class="calculate" onclick="bmi()">Calculate BMI</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Simple Calculator")
+return `
+<input type="number" id="n1" placeholder="First number">
+<select id="op">
+<option value="+">+</option>
+<option value="-">−</option>
+<option value="*">×</option>
+<option value="/">÷</option>
+</select>
+<input type="number" id="n2" placeholder="Second number">
+<button class="calculate" onclick="simpleCalc()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Discount Calculator")
+return `
+<input type="number" id="price" placeholder="Original Price">
+<input type="number" id="discount" placeholder="Discount %">
+<button class="calculate" onclick="discountCalc()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="GST Calculator")
+return `
+<input type="number" id="price" placeholder="Amount">
+<input type="number" id="gst" placeholder="GST %">
+<button class="calculate" onclick="gstCalc()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="EMI Calculator")
+return `
+<input type="number" id="loan" placeholder="Loan Amount">
+<input type="number" id="rate" placeholder="Annual Interest %">
+<input type="number" id="months" placeholder="Months">
+<button class="calculate" onclick="emiCalc()">Calculate EMI</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Simple Interest Calculator")
+return `
+<input type="number" id="principal" placeholder="Principal">
+<input type="number" id="interest" placeholder="Interest %">
+<input type="number" id="years" placeholder="Years">
+<button class="calculate" onclick="simpleInterest()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Compound Interest Calculator")
+return `
+<input type="number" id="principal" placeholder="Principal">
+<input type="number" id="interest" placeholder="Interest %">
+<input type="number" id="years" placeholder="Years">
+<button class="calculate" onclick="compoundInterest()">Calculate</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Word Counter")
+return `
+<textarea id="text" rows="8" placeholder="Text yahan likhein"></textarea>
+<button class="calculate" onclick="wordCount()">Count</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Character Counter")
+return `
+<textarea id="text" rows="8" placeholder="Text yahan likhein"></textarea>
+<button class="calculate" onclick="charCount()">Count</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Case Converter")
+return `
+<textarea id="text" rows="8" placeholder="Text yahan likhein"></textarea>
+<button class="calculate" onclick="upperText()">UPPERCASE</button>
+<button class="calculate" onclick="lowerText()">lowercase</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Text Reverser")
+return `
+<textarea id="text" rows="8" placeholder="Text yahan likhein"></textarea>
+<button class="calculate" onclick="reverseText()">Reverse</button>
+<div id="result" class="result"></div>`;
+
+if(name==="Password Generator")
+return `
+<input type="number" id="length" value="12" min="4" max="50">
+<button class="calculate" onclick="passwordGen()">Generate</button>
+<div id="result" class="result"></div>`;
+
+return `
+<input type="number" id="x" placeholder="Enter number">
+<button class="calculate" onclick="genericCalc()">Calculate</button>
+<div id="result" class="result"></div>`;
+}
+
+function ageCalc(){
+
+let d=new Date(document.getElementById("birth").value);
+
+if(isNaN(d)){
+document.getElementById("result").innerText="Date select karein";
+return;
+}
+
+let now=new Date();
+
+let age=now.getFullYear()-d.getFullYear();
+
+let m=now.getMonth()-d.getMonth();
+
+if(m<0 || (m===0 && now.getDate()<d.getDate())) age--;
+
+document.getElementById("result").innerText="Aapki age: "+age+" years";
+}
+
+function percentage(){
+
+let a=Number(document.getElementById("a").value);
+let b=Number(document.getElementById("b").value);
+
+if(b===0){
+document.getElementById("result").innerText="Total 0 nahi ho sakta";
+return;
+}
+
+document.getElementById("result").innerText=(a/b*100).toFixed(2)+"%";
+}
+
+function bmi(){
+
+let w=Number(document.getElementById("weight").value);
+let h=Number(document.getElementById("height").value)/100;
+
+if(w<=0 || h<=0){
+document.getElementById("result").innerText="Valid values dalein";
+return;
+}
+
+document.getElementById("result").innerText=
+"BMI: "+(w/(h*h)).toFixed(2);
+}
+
+function simpleCalc(){
+
+let a=Number(document.getElementById("n1").value);
+let b=Number(document.getElementById("n2").value);
+let op=document.getElementById("op").value;
+
+let r=0;
+
+if(op==="+")r=a+b;
+if(op==="-")r=a-b;
+if(op==="*")r=a*b;
+if(op==="/")r=b===0?"Cannot divide by zero":a/b;
+
+document.getElementById("result").innerText=r;
+}
+
+function discountCalc(){
+
+let p=Number(document.getElementById("price").value);
+let d=Number(document.getElementById("discount").value);
+
+let save=p*d/100;
+let final=p-save;
+
+document.getElementById("result").innerText=
+"Discount: "+save.toFixed(2)+" | Final Price: "+final.toFixed(2);
+}
+
+function gstCalc(){
+
+let p=Number(document.getElementById("price").value);
+let g=Number(document.getElementById("gst").value);
+
+let tax=p*g/100;
+
+document.getElementById("result").innerText=
+"GST: "+tax.toFixed(2)+" | Total: "+(p+tax).toFixed(2);
+}
+
+function emiCalc(){
+
+let P=Number(document.getElementById("loan").value);
+let annual=Number(document.getElementById("rate").value);
+let n=Number(document.getElementById("months").value);
+
+let r=annual/12/100;
+
+if(r===0){
+document.getElementById("result").innerText="EMI: "+(P/n).toFixed(2);
+return;
+}
+
+let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+document.getElementById("result").innerText=
+"Monthly EMI: "+emi.toFixed(2);
+}
+
+function simpleInterest(){
+
+let p=Number(document.getElementById("principal").value);
+let r=Number(document.getElementById("interest").value);
+let t=Number(document.getElementById("years").value);
+
+let si=p*r*t/100;
+
+document.getElementById("result").innerText=
+"Simple Interest: "+si.toFixed(2)+" | Total: "+(p+si).toFixed(2);
+}
+
+function compoundInterest(){
+
+let p=Number(document.getElementById("principal").value);
+let r=Number(document.getElementById("interest").value);
+let t=Number(document.getElementById("years").value);
+
+let total=p*Math.pow(1+r/100,t);
+let ci=total-p;
+
+document.getElementById("result").innerText=
+"Compound Interest: "+ci.toFixed(2)+" | Total: "+total.toFixed(2);
+}
+
+function wordCount(){
+
+let text=document.getElementById("text").value.trim();
+
+let count=text?text.split(/\s+/).length:0;
+
+document.getElementById("result").innerText=
+"Words: "+count;
+}
+
+function charCount(){
+
+let text=document.getElementById("text").value;
+
+document.getElementById("result").innerText=
+"Characters: "+text.length;
+}
+
+function upperText(){
+
+document.getElementById("result").innerText=
+document.getElementById("text").value.toUpperCase();
+}
+
+function lowerText(){
+
+document.getElementById("result").innerText=
+document.getElementById("text").value.toLowerCase();
+}
+
+function reverseText(){
+
+document.getElementById("result").innerText=
+document.getElementById("text").value.split("").reverse().join("");
+}
+
+function passwordGen(){
+
+let length=Number(document.getElementById("length").value);
+
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+let password="";
+
+for(let i=0;i<length;i++){
+password+=chars[Math.floor(Math.random()*chars.length)];
+}
+
+document.getElementById("result").innerText=password;
+}
+
+function genericCalc(){
+
+let x=Number(document.getElementById("x").value);
+
+document.getElementById("result").innerText=
+"Input: "+x;
+}
+
+</script>
+
+</body>
+  </html>
